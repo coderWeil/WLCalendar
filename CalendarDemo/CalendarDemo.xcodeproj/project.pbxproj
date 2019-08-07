@@ -162,24 +162,26 @@
 		33CA1AEF22F98EA900EF1202 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				33CA1AF022F98EA900EF1202 /* WLCalendarCell.h */,
-				33CA1AF122F98EA900EF1202 /* WLCalendarContainerView.h */,
 				33CA1AF222F98EA900EF1202 /* WLCalendarView.h */,
-				33CA1AF322F98EA900EF1202 /* NSDate+WLCalendar.m */,
-				33CA1AF422F98EA900EF1202 /* WLCalendarListView.m */,
-				33CA1AF522F98EA900EF1202 /* WLCalendarProtocol.h */,
-				33CA1AF622F98EA900EF1202 /* WLCalendarSingleView.m */,
-				33CA1AF722F98EA900EF1202 /* WLCalendarMultiView.m */,
-				33CA1AF822F98EA900EF1202 /* WLCalendarTopView.m */,
-				33CA1AF922F98EA900EF1202 /* WLCalendarContainerView.m */,
-				33CA1AFA22F98EA900EF1202 /* WLCalendarCell.m */,
-				33CA1AFB22F98EA900EF1202 /* WLCalendarModelProtocol.h */,
-				33CA1AFC22F98EA900EF1202 /* NSDate+WLCalendar.h */,
 				33CA1AFD22F98EA900EF1202 /* WLCalendarView.m */,
+				33CA1AFC22F98EA900EF1202 /* NSDate+WLCalendar.h */,
+				33CA1AF322F98EA900EF1202 /* NSDate+WLCalendar.m */,
 				33CA1AFE22F98EA900EF1202 /* WLCalendarListView.h */,
-				33CA1AFF22F98EA900EF1202 /* WLCalendarTopView.h */,
-				33CA1B0022F98EA900EF1202 /* WLCalendarMultiView.h */,
+				33CA1AF422F98EA900EF1202 /* WLCalendarListView.m */,
 				33CA1B0122F98EA900EF1202 /* WLCalendarSingleView.h */,
+				33CA1AF622F98EA900EF1202 /* WLCalendarSingleView.m */,
+				33CA1AF122F98EA900EF1202 /* WLCalendarContainerView.h */,
+				33CA1AF922F98EA900EF1202 /* WLCalendarContainerView.m */,
+				33CA1B0022F98EA900EF1202 /* WLCalendarMultiView.h */,
+				33CA1AF722F98EA900EF1202 /* WLCalendarMultiView.m */,
+				33CA1AFF22F98EA900EF1202 /* WLCalendarTopView.h */,
+				33CA1AF822F98EA900EF1202 /* WLCalendarTopView.m */,
+				33CA1B0522F98EA900EF1202 /* WLCalendarModel.h */,
+				33CA1B0422F98EA900EF1202 /* WLCalendarModel.m */,
+				33CA1AF022F98EA900EF1202 /* WLCalendarCell.h */,
+				33CA1AFA22F98EA900EF1202 /* WLCalendarCell.m */,
+				33CA1AF522F98EA900EF1202 /* WLCalendarProtocol.h */,
+				33CA1AFB22F98EA900EF1202 /* WLCalendarModelProtocol.h */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -188,8 +190,6 @@
 			isa = PBXGroup;
 			children = (
 				33CA1B0322F98EA900EF1202 /* WLCalendarExampleCell.h */,
-				33CA1B0422F98EA900EF1202 /* WLCalendarModel.m */,
-				33CA1B0522F98EA900EF1202 /* WLCalendarModel.h */,
 				33CA1B0622F98EA900EF1202 /* WLCalendarExampleCell.m */,
 			);
 			path = Example;
