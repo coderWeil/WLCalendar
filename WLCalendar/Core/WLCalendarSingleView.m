@@ -13,6 +13,7 @@
 
 @interface WLCalendarSingleView ()
 @property (nonatomic, strong) WLCalendarListView *collect;
+@property (nonatomic, strong) UICollectionViewFlowLayout *layout;
 @end
 
 @implementation WLCalendarSingleView
@@ -30,11 +31,12 @@
     CGFloat width = self.bounds.size.width;
     CGFloat height = self.bounds.size.height;
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    layout.itemSize = CGSizeMake(width/7.0, (height - CGRectGetMaxY(self.topView.frame))/7.0 * 0.85);
+    layout.itemSize = CGSizeMake(width/7.0, 40);
     layout.minimumLineSpacing = 0.0;
     layout.minimumInteritemSpacing = 0.0;
     self.collect = [[WLCalendarListView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.topView.frame), width, height - CGRectGetMaxY(self.topView.frame)) collectionViewLayout:layout];
     [self addSubview:self.collect];
+    self.layout = layout;
 }
 - (void) wl_setCalendarDelegate:(id<WLCalendarProtocol>)calendarDelegate
 {
@@ -42,6 +44,7 @@
 }
 - (void)wl_setupCalendarModel:(id<WLCalendarModelProtocol>)calendarModel date:(nonnull NSDate *)date
 {
+    self.layout.itemSize =  CGSizeMake(self.bounds.size.width/7.0, calendarModel.wl_itemH);
     NSInteger previousMonthDays = [[date wl_previousMonthDate] wl_daysOfMonth];
     [self.collect wl_setupCalendarModel:calendarModel previousDaysOfMonth:previousMonthDays];
 }

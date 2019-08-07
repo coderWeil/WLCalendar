@@ -63,7 +63,7 @@
 {
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *comps = [calendar components:(NSCalendarUnitDay | NSCalendarUnitYear | NSCalendarUnitMonth) fromDate:self];
-    comps.day = 1;
+    comps.day = 0;
     NSDate *firstDayDate = [calendar dateFromComponents:comps];
     NSInteger firstWeekDay = [calendar ordinalityOfUnit:NSCalendarUnitWeekday inUnit:NSCalendarUnitWeekOfMonth forDate:firstDayDate] - 1;
     return firstWeekDay;

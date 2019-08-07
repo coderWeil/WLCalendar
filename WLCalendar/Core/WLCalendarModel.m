@@ -20,6 +20,7 @@
 @synthesize wl_itemText = _text;
 @synthesize wl_recordArr = _recordArr;
 @synthesize enabledRecordMode = _enabledRecordMode;
+@synthesize wl_itemH = _itemH;
 
 - (id<WLCalendarModelProtocol>)initWithDate:(NSDate *)date calendarItemType:(WLCalendarItem)type
 {

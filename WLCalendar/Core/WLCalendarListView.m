@@ -40,6 +40,10 @@
 }
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
+    if ([self.calendarDelegate enableDynamicHeight]) {
+        NSInteger firstWeekday = self.calendarModel.wl_firstWeekday;
+        return self.calendarModel.wl_daysOfMonth + firstWeekday;
+    }
     return 42;
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -72,28 +76,32 @@
             }
         }
     }else if (indexPath.item < firstWeekday) {//代表上一个月
-        calendarModel.wl_itemText = [NSString stringWithFormat:@"%zd",self.monthDays - (firstWeekday - indexPath.item) + 1];
-        if (calendarModel.isEnabledRecordMode) {
-            NSString *str = [NSString stringWithFormat:@"%02zd-%02zd-%02zd",[[calendarModel.wl_date wl_previousMonthDate] wl_year],[[calendarModel.wl_date wl_previousMonthDate] wl_month],self.monthDays - (firstWeekday - indexPath.item) + 1];
-            if ([calendarModel.wl_recordArr containsObject:str]) {
-                calendarModel.wl_calendarItemType = WLCalendarItemRecord;
+        if (![self.calendarDelegate enableDynamicHeight]) {
+            calendarModel.wl_itemText = [NSString stringWithFormat:@"%zd",self.monthDays - (firstWeekday - indexPath.item) + 1];
+            if (calendarModel.isEnabledRecordMode) {
+                NSString *str = [NSString stringWithFormat:@"%02zd-%02zd-%02zd",[[calendarModel.wl_date wl_previousMonthDate] wl_year],[[calendarModel.wl_date wl_previousMonthDate] wl_month],self.monthDays - (firstWeekday - indexPath.item) + 1];
+                if ([calendarModel.wl_recordArr containsObject:str]) {
+                    calendarModel.wl_calendarItemType = WLCalendarItemRecord;
+                }else {
+                    calendarModel.wl_calendarItemType = WLCalendarItemNormal;
+                }
             }else {
-                calendarModel.wl_calendarItemType = WLCalendarItemNormal;
+                calendarModel.wl_calendarItemType = WLCalendarItemDisabled;
             }
-        }else {
-            calendarModel.wl_calendarItemType = WLCalendarItemDisabled;
         }
     }else if (indexPath.row >= firstWeekday + totalDays) {//代表下一个月
-        calendarModel.wl_itemText = [NSString stringWithFormat:@"%zd",indexPath.row - firstWeekday - totalDays + 1];
-        if (calendarModel.isEnabledRecordMode) {
-            NSString *str = [NSString stringWithFormat:@"%02zd-%02zd-%02zd",[[calendarModel.wl_date wl_nextMonthDate] wl_year],[[calendarModel.wl_date wl_nextMonthDate] wl_month],indexPath.row - firstWeekday - totalDays + 1];
-            if ([calendarModel.wl_recordArr containsObject:str]) {
-                calendarModel.wl_calendarItemType = WLCalendarItemRecord;
+        if (![self.calendarDelegate enableDynamicHeight]) {
+            calendarModel.wl_itemText = [NSString stringWithFormat:@"%zd",indexPath.row - firstWeekday - totalDays + 1];
+            if (calendarModel.isEnabledRecordMode) {
+                NSString *str = [NSString stringWithFormat:@"%02zd-%02zd-%02zd",[[calendarModel.wl_date wl_nextMonthDate] wl_year],[[calendarModel.wl_date wl_nextMonthDate] wl_month],indexPath.row - firstWeekday - totalDays + 1];
+                if ([calendarModel.wl_recordArr containsObject:str]) {
+                    calendarModel.wl_calendarItemType = WLCalendarItemRecord;
+                }else {
+                    calendarModel.wl_calendarItemType = WLCalendarItemNormal;
+                }
             }else {
-                calendarModel.wl_calendarItemType = WLCalendarItemNormal;
+                calendarModel.wl_calendarItemType = WLCalendarItemDisabled;
             }
-        }else {
-            calendarModel.wl_calendarItemType = WLCalendarItemDisabled;
         }
     }
     [cell wl_setupCalendarData:calendarModel];

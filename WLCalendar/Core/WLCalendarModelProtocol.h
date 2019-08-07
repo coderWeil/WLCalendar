@@ -30,6 +30,8 @@ typedef NS_OPTIONS(NSUInteger, WLCalendarItem) {
 @property (nonatomic, assign, getter=isEnabledRecordMode) BOOL enabledRecordMode;
 //有记录的日期格式为2019-08-07的格式
 @property (nonatomic, strong) NSArray<NSString *> *wl_recordArr;
+//每一个item的高度
+@property (nonatomic, assign) float wl_itemH;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -15,6 +15,9 @@ NS_ASSUME_NONNULL_BEGIN
 @optional
 - (void) currentDate:(NSDate *)currentDate day:(NSInteger)day;
 - (void) year:(NSInteger)year month:(NSInteger)month day:(NSInteger)day;
+//是否开启动态计算日历表的高度
+@required;
+- (BOOL) enableDynamicHeight;
 @end
 
 NS_ASSUME_NONNULL_END
