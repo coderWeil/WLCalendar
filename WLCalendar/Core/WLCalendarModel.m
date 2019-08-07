@@ -18,6 +18,8 @@
 @synthesize wl_firstWeekday = _firstWeekday;
 @synthesize wl_calendarItemType = _type;
 @synthesize wl_itemText = _text;
+@synthesize wl_recordArr = _recordArr;
+@synthesize enabledRecordMode = _enabledRecordMode;
 
 - (id<WLCalendarModelProtocol>)initWithDate:(NSDate *)date calendarItemType:(WLCalendarItem)type
 {

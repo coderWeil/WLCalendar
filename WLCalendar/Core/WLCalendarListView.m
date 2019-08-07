@@ -48,26 +48,53 @@
     id<WLCalendarModelProtocol> calendarModel = self.calendarModel;
     NSInteger firstWeekday = calendarModel.wl_firstWeekday;
     NSInteger totalDays = calendarModel.wl_daysOfMonth;
-    if (indexPath.item >= firstWeekday && indexPath.item < firstWeekday + totalDays) {
-        calendarModel.wl_itemText = [NSString stringWithFormat:@"%ld",indexPath.item - firstWeekday + 1];
-        if ([calendarModel wl_month] == [[NSDate date] wl_month] && [calendarModel wl_year] == [[NSDate date] wl_year]) {
-            if (indexPath.item == [[NSDate date] wl_day] + firstWeekday - 1) {
-                calendarModel.wl_calendarItemType = WLCalendarItemSelected;
-                if (!self.currentCell) {
-                    self.currentCell = cell;
-                }
+    if (indexPath.item >= firstWeekday && indexPath.item < firstWeekday + totalDays) {//代表本月
+        calendarModel.wl_itemText = [NSString stringWithFormat:@"%zd",indexPath.item - firstWeekday + 1];
+        if (calendarModel.isEnabledRecordMode) {
+            NSString *str = [NSString stringWithFormat:@"%02zd-%02zd-%02zd",[calendarModel wl_year],[calendarModel wl_month],indexPath.item - firstWeekday + 1];
+            if ([calendarModel.wl_recordArr containsObject:str]) {
+                calendarModel.wl_calendarItemType = WLCalendarItemRecord;
             }else {
                 calendarModel.wl_calendarItemType = WLCalendarItemNormal;
             }
         }else {
-            calendarModel.wl_calendarItemType = WLCalendarItemNormal;
+            if ([calendarModel wl_month] == [[NSDate date] wl_month] && [calendarModel wl_year] == [[NSDate date] wl_year]) {
+                if (indexPath.item == [[NSDate date] wl_day] + firstWeekday - 1) {
+                    calendarModel.wl_calendarItemType = WLCalendarItemSelected;
+                    if (!self.currentCell) {
+                        self.currentCell = cell;
+                    }
+                }else {
+                    calendarModel.wl_calendarItemType = WLCalendarItemNormal;
+                }
+            }else {
+                calendarModel.wl_calendarItemType = WLCalendarItemNormal;
+            }
         }
-    }else if (indexPath.item < firstWeekday) {
-        calendarModel.wl_itemText = [NSString stringWithFormat:@"%ld",self.monthDays - (firstWeekday - indexPath.item) + 1];
-        calendarModel.wl_calendarItemType = WLCalendarItemDisabled;
-    }else if (indexPath.row >= firstWeekday + totalDays) {
-        calendarModel.wl_itemText = [NSString stringWithFormat:@"%ld",indexPath.row - firstWeekday - totalDays + 1];
-        calendarModel.wl_calendarItemType = WLCalendarItemDisabled;
+    }else if (indexPath.item < firstWeekday) {//代表上一个月
+        calendarModel.wl_itemText = [NSString stringWithFormat:@"%zd",self.monthDays - (firstWeekday - indexPath.item) + 1];
+        if (calendarModel.isEnabledRecordMode) {
+            NSString *str = [NSString stringWithFormat:@"%02zd-%02zd-%02zd",[[calendarModel.wl_date wl_previousMonthDate] wl_year],[[calendarModel.wl_date wl_previousMonthDate] wl_month],self.monthDays - (firstWeekday - indexPath.item) + 1];
+            if ([calendarModel.wl_recordArr containsObject:str]) {
+                calendarModel.wl_calendarItemType = WLCalendarItemRecord;
+            }else {
+                calendarModel.wl_calendarItemType = WLCalendarItemNormal;
+            }
+        }else {
+            calendarModel.wl_calendarItemType = WLCalendarItemDisabled;
+        }
+    }else if (indexPath.row >= firstWeekday + totalDays) {//代表下一个月
+        calendarModel.wl_itemText = [NSString stringWithFormat:@"%zd",indexPath.row - firstWeekday - totalDays + 1];
+        if (calendarModel.isEnabledRecordMode) {
+            NSString *str = [NSString stringWithFormat:@"%02zd-%02zd-%02zd",[[calendarModel.wl_date wl_nextMonthDate] wl_year],[[calendarModel.wl_date wl_nextMonthDate] wl_month],indexPath.row - firstWeekday - totalDays + 1];
+            if ([calendarModel.wl_recordArr containsObject:str]) {
+                calendarModel.wl_calendarItemType = WLCalendarItemRecord;
+            }else {
+                calendarModel.wl_calendarItemType = WLCalendarItemNormal;
+            }
+        }else {
+            calendarModel.wl_calendarItemType = WLCalendarItemDisabled;
+        }
     }
     [cell wl_setupCalendarData:calendarModel];
     return cell;

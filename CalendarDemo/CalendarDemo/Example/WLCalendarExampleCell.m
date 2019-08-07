@@ -37,6 +37,18 @@
     [super wl_setupCalendarData:model];
     self.model = model;
     self.dayLabel.text = model.wl_itemText;
+    [self _setupStatus];
+}
+- (void)setCalendarItemType:(WLCalendarItem)calendarItemType
+{
+    if (self.model.isEnabledRecordMode) {
+        return;
+    }
+    self.model.wl_calendarItemType = calendarItemType;
+    [self _setupStatus];
+}
+- (void) _setupStatus
+{
     switch (self.model.wl_calendarItemType) {
         case WLCalendarItemNormal:
             self.dayLabel.textColor = [UIColor darkGrayColor];
@@ -50,21 +62,7 @@
             self.dayLabel.textColor = [UIColor whiteColor];
             self.dotView.layer.backgroundColor = [UIColor redColor].CGColor;
             break;
-    }
-}
-- (void)setCalendarItemType:(WLCalendarItem)calendarItemType
-{
-    self.model.wl_calendarItemType = calendarItemType;
-    switch (calendarItemType) {
-        case WLCalendarItemNormal:
-            self.dayLabel.textColor = [UIColor darkGrayColor];
-            self.dotView.layer.backgroundColor = [UIColor clearColor].CGColor;
-            break;
-        case WLCalendarItemDisabled:
-            self.dayLabel.textColor = [UIColor lightGrayColor];
-            self.dotView.layer.backgroundColor = [UIColor clearColor].CGColor;
-            break;
-        case WLCalendarItemSelected:
+        case WLCalendarItemRecord:
             self.dayLabel.textColor = [UIColor whiteColor];
             self.dotView.layer.backgroundColor = [UIColor redColor].CGColor;
             break;
@@ -78,5 +76,4 @@
     self.dotView.center = CGPointMake(self.contentView.bounds.size.width * 0.5, self.contentView.bounds.size.height * 0.5);
     self.dotView.layer.cornerRadius = self.dotView.bounds.size.width * 0.5;
 }
-
 @end

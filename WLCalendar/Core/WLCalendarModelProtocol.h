@@ -13,7 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 typedef NS_OPTIONS(NSUInteger, WLCalendarItem) {
     WLCalendarItemDisabled = 0,
     WLCalendarItemNormal = 1,
-    WLCalendarItemSelected = 2
+    WLCalendarItemSelected = 2,
+    WLCalendarItemRecord = 3
 };
 
 @protocol WLCalendarModelProtocol <NSObject>
@@ -25,6 +26,10 @@ typedef NS_OPTIONS(NSUInteger, WLCalendarItem) {
 @property (nonatomic, assign) NSInteger wl_firstWeekday;
 @property (nonatomic, assign) WLCalendarItem wl_calendarItemType;
 @property (nonatomic, copy) NSString *wl_itemText;
+//是否启用记录模式,默认不启用,此属性和wl_recordArr同时存在
+@property (nonatomic, assign, getter=isEnabledRecordMode) BOOL enabledRecordMode;
+//有记录的日期格式为2019-08-07的格式
+@property (nonatomic, strong) NSArray<NSString *> *wl_recordArr;
 @end
 
 NS_ASSUME_NONNULL_END

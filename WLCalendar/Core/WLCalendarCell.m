@@ -11,6 +11,6 @@
 @implementation WLCalendarCell
 - (void) wl_setupCalendarData:(id<WLCalendarModelProtocol>)model
 {
-    self.userInteractionEnabled = !(model.wl_calendarItemType == WLCalendarItemDisabled);
+    self.userInteractionEnabled = !model.isEnabledRecordMode && !(model.wl_calendarItemType == WLCalendarItemDisabled);
 }
 @end

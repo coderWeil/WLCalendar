@@ -26,7 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self showSingleCalendar];
-    [self showMultiCalendar];
+//    [self showMultiCalendar];
 }
 - (void) showSingleCalendar
 {
@@ -37,8 +37,18 @@
     [self.singleCalendarView setupTopView:self.singleTopView];
     [self.singleCalendarView wl_setCalendarItemClass:[WLCalendarExampleCell class]];
     id<WLCalendarModelProtocol> model = [[WLCalendarModel alloc] initWithDate:[NSDate date] calendarItemType:WLCalendarItemNormal];
-    [self.singleCalendarView wl_setupCalendarModel:model date:[NSDate date]];
+//    NSMutableArray<NSString *> *_arr = @[].mutableCopy;
+//    for (int i = 0; i < 5; ++i) {
+//        NSString *str = [NSString stringWithFormat:@"%02d-%02d-%02d",(int)arc4random()%3 + 2018,(int)arc4random()%3 + 7,(int)arc4random()%3+5];
+//        [_arr addObject:str];
+//    }
+//    [_arr addObject:@"2019-08-02"];
+//    [_arr addObject:@"2019-07-28"];
+//    [_arr addObject:@"2019-09-05"];
+//    model.wl_recordArr = _arr.copy;
+//    model.enabledRecordMode = YES;
     [self.singleCalendarView wl_setCalendarDelegate:self];
+    [self.singleCalendarView wl_setupCalendarModel:model date:[NSDate date]];
     [self.view addSubview:self.singleCalendarView];
 }
 - (void) showMultiCalendar
@@ -65,7 +75,7 @@
 
 - (void)year:(NSInteger)year month:(NSInteger)month day:(NSInteger)day
 {
-    NSLog(@"%ld年---%ld月---%ld日",year,month,day);
+    NSLog(@"%zd年---%zd月---%zd日",year,month,day);
 }
 - (void)currentDate:(NSDate *)currentDate day:(NSInteger)day
 {
