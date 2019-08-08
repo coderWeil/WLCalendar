@@ -3,6 +3,8 @@
 
 ![动图](https://github.com/weilLove/WLCalendar/blob/master/111.mov)
 
+![图片](https://github.com/weilLove/WLCalendar/blob/master/动态计算高度的单个日历.png)
+
 #### 引入方式
 1. ```cocopods``` 引入 ```pod WLCalendar```
 2. 下载源码，将```WLCalendar```拖入工程中
