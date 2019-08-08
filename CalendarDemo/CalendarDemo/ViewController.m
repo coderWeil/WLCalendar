@@ -26,17 +26,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self showSingleCalendar];
-//    [self showMultiCalendar];
+    [self showMultiCalendar];
 }
 - (void) showSingleCalendar
 {
     NSArray *week = @[@"MON",@"TUE",@"WEN",@"THU",@"FRI",@"SAT",@"SUN"];
     id<WLCalendarModelProtocol> model = [[WLCalendarModel alloc] initWithDate:[NSDate date] calendarItemType:WLCalendarItemNormal];
     model.wl_itemH = 30;
-    NSInteger totalDays = model.wl_daysOfMonth;
-    NSInteger firstWeekday = model.wl_firstWeekday;
-    NSInteger row = 1 + (totalDays - firstWeekday) / 7;
-   CGFloat height = 50 + model.wl_itemH * row;
+//    NSInteger totalDays = model.wl_daysOfMonth;
+//    NSInteger firstWeekday = model.wl_firstWeekday;
+//    NSInteger row = 1 + (totalDays - firstWeekday) / 7;
+//   CGFloat height = 50 + model.wl_itemH * row;
+    CGFloat height = 250;
     self.singleCalendarView = [[WLCalendarSingleView alloc] initWithFrame:CGRectMake(20, 100, self.view.frame.size.width - 2 * 20, height)];
     self.singleTopView = [[WLCalendarTopView alloc] initWithFrame:CGRectMake(0, 0, self.singleCalendarView.frame.size.width, 50)];
     [self.singleTopView wl_setupData:week];
@@ -51,7 +52,7 @@
     [_arr addObject:@"2019-08-28"];
     [_arr addObject:@"2019-08-05"];
     model.wl_recordArr = _arr.copy;
-    model.enabledRecordMode = YES;
+    model.enabledRecordMode = NO;
     [self.singleCalendarView wl_setCalendarDelegate:self];
     [self.singleCalendarView wl_setupCalendarModel:model date:[NSDate date]];
     [self.view addSubview:self.singleCalendarView];
@@ -89,6 +90,6 @@
 //在调用 [self showMultiCalendar];将此值返回NO，否则崩溃
 - (BOOL)enableDynamicHeight
 {
-    return YES;
+    return NO;
 }
 @end
