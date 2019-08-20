@@ -35,7 +35,7 @@
     model.wl_itemH = 30;
 //    NSInteger totalDays = model.wl_daysOfMonth;
 //    NSInteger firstWeekday = model.wl_firstWeekday;
-//    NSInteger row = 1 + (totalDays - firstWeekday) / 7;
+//     NSInteger row = 1 + (totalDays - (7 - firstWeekday)) / 7 + ((totalDays - (7 - firstWeekday)) % 7 > 0 ? 1 : 0);
 //   CGFloat height = 50 + model.wl_itemH * row;
     CGFloat height = 250;
     self.singleCalendarView = [[WLCalendarSingleView alloc] initWithFrame:CGRectMake(20, 100, self.view.frame.size.width - 2 * 20, height)];
